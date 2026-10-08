@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shanxs Downloader - دليل الاستخدام</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #11024F;
+    --navy-soft: #1C1470;
+    --accent: #E4572E;
+    --ink: #1B1836;
+    --muted: #5F5B7A;
+    --paper: #FBFAFE;
+    --tint: #F0EEFA;
+    --line: #E2DFF0;
+    --code-bg: #14113A;
+    --code-ink: #EDEBFF;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Cairo", "Segoe UI", Tahoma, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.95;
+  }
+  header {
+    background: var(--navy);
+    color: #fff;
+    padding: 56px 24px 48px;
+    border-bottom: 6px solid var(--accent);
+  }
+  .wrap { max-width: 780px; margin: 0 auto; }
+  header h1 { margin: 0 0 6px; font-size: 2.3rem; line-height: 1.3; }
+  header p { margin: 0; color: #CFCBF5; font-size: 1.05rem; }
+  header .ver { margin-top: 18px; font-size: .9rem; color: #A9A3E6; }
+
+  main { padding: 36px 24px 72px; }
+  section { margin-top: 52px; }
+  h2 {
+    font-size: 1.55rem;
+    margin: 0 0 14px;
+    color: var(--navy);
+    padding-right: 14px;
+    border-right: 5px solid var(--accent);
+    line-height: 1.5;
+  }
+  h3 { font-size: 1.15rem; margin: 26px 0 8px; color: var(--navy-soft); }
+  p { margin: 0 0 14px; }
+  a { color: var(--navy-soft); }
+  a:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  nav.toc {
+    background: var(--tint);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-top: 32px;
+  }
+  nav.toc strong { display: block; margin-bottom: 6px; color: var(--navy); }
+  nav.toc ul { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 28px; }
+  nav.toc li { padding: 2px 0; break-inside: avoid; }
+  nav.toc a { text-decoration: none; }
+  nav.toc a:hover { text-decoration: underline; }
+
+  ul, ol { padding-right: 24px; margin: 0 0 14px; }
+  li { margin-bottom: 6px; }
+
+  ol.steps { list-style: none; counter-reset: s; padding: 0; }
+  ol.steps > li {
+    counter-increment: s;
+    position: relative;
+    padding: 4px 56px 4px 0;
+    margin-bottom: 16px;
+  }
+  ol.steps > li::before {
+    content: counter(s);
+    position: absolute;
+    right: 0; top: 4px;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: #fff;
+    font-weight: 700;
+    display: grid; place-items: center;
+  }
+
+  pre {
+    direction: ltr; text-align: left;
+    background: var(--code-bg);
+    color: var(--code-ink);
+    padding: 16px 20px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: .92rem;
+    line-height: 1.7;
+    margin: 0 0 16px;
+  }
+  code {
+    direction: ltr; unicode-bidi: embed;
+    font-family: Consolas, "Courier New", monospace;
+    background: var(--tint);
+    padding: 1px 7px;
+    border-radius: 5px;
+    font-size: .92em;
+  }
+  pre code { background: none; padding: 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 0 0 16px; font-size: .97rem; }
+  th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: right; vertical-align: top; }
+  th { background: var(--tint); color: var(--navy); }
+
+  /* The one memorable element: the safety statement */
+  .safety {
+    background: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 24px 26px 14px;
+    box-shadow: 0 0 0 6px rgba(228, 87, 46, .08);
+  }
+  .safety h2 { border: 0; padding: 0; margin-top: 0; color: var(--accent); }
+
+  .note {
+    background: var(--tint);
+    border-right: 4px solid var(--navy-soft);
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin: 0 0 16px;
+  }
+  .warn {
+    background: #FFF4EF;
+    border-right: 4px solid var(--accent);
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin: 0 0 16px;
+  }
+
+  details {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+    margin-bottom: 10px;
+  }
+  summary {
+    cursor: pointer;
+    padding: 12px 18px;
+    font-weight: 600;
+    color: var(--navy);
+    list-style-position: inside;
+  }
+  details[open] summary { border-bottom: 1px solid var(--line); }
+  details > div { padding: 12px 18px 4px; }
+
+  .dedication {
+    margin-top: 64px;
+    padding: 30px 24px;
+    text-align: center;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 14px;
+  }
+  .dedication p { margin: 0 0 6px; }
+  .dedication .name { font-size: 1.25rem; font-weight: 700; color: #fff; }
+  .dedication .small { color: #CFCBF5; font-size: .98rem; }
+
+  .en { direction: ltr; text-align: left; }
+  .en h2 { border-right: 0; padding-right: 0; border-left: 5px solid var(--accent); padding-left: 14px; }
+
+  footer { text-align: center; color: var(--muted); font-size: .92rem; padding: 0 24px 40px; }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    nav.toc ul { columns: 1; }
+    header h1 { font-size: 1.8rem; }
+  }
+  @media print {
+    header { border-bottom-width: 3px; }
+    details { break-inside: avoid; }
+    details > div { display: block; }
+    nav.toc { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Shanxs Downloader</h1>
+    <p>أداة بسيطة لتحميل فيديوهات وقوائم تشغيل يوتيوب بصيغة MP4 أو MP3، بجودة تختارها بنفسك.</p>
+    <div class="ver">الإصدار 1.0 &nbsp;|&nbsp; لنظام Windows 10 / 11</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <nav class="toc" aria-label="المحتويات">
+    <strong>المحتويات</strong>
+    <ul>
+      <li><a href="#features">المميزات</a></li>
+      <li><a href="#package">محتويات الحزمة</a></li>
+      <li><a href="#install">التنزيل والتشغيل</a></li>
+      <li><a href="#usage">طريقة الاستخدام</a></li>
+      <li><a href="#safety">هل الأداة آمنة؟</a></li>
+      <li><a href="#mistakes">أخطاء شائعة</a></li>
+      <li><a href="#troubleshoot">حل المشاكل</a></li>
+      <li><a href="#update">تحديث yt-dlp</a></li>
+      <li><a href="#legal">إخلاء مسؤولية</a></li>
+      <li><a href="#english">English summary</a></li>
+    </ul>
+  </nav>
+
+  <section id="features">
+    <h2>المميزات</h2>
+    <ul>
+      <li>تحميل فيديو واحد، أو قائمة تشغيل (Playlist) كاملة.</li>
+      <li>اختيار الصيغة: <strong>MP4</strong> للفيديو أو <strong>MP3</strong> للصوت فقط.</li>
+      <li>اختيار الجودة: من 360p إلى 2160p للفيديو، ومن 128 إلى 320 kbps للصوت.</li>
+      <li>قوائم التشغيل تُحفظ في مجلد باسمها، والملفات مرقّمة بالترتيب.</li>
+      <li>واجهة حديثة، مع إمكانية اختيار صورة خلفية من عندك.</li>
+      <li>لا تحتاج تثبيت، ولا صلاحيات مدير (Administrator).</li>
+    </ul>
+  </section>
+
+  <section id="package">
+    <h2>محتويات الحزمة</h2>
+    <p>بعد فك الضغط يجب أن يكون الترتيب كالتالي بالضبط:</p>
+<pre>Shanxs/
+├── shanxs.bat                 &lt;-- ملف التشغيل (دبل كليك)
+├── README.html                &lt;-- هذا الملف
+└── Shanxs-Downloader/
+    ├── Shanxs-Downloader.ps1  &lt;-- كود الأداة
+    ├── yt-dlp.exe             &lt;-- محرك التحميل
+    ├── ffmpeg.exe             &lt;-- تحويل الصوت ودمج الفيديو
+    ├── ffprobe.exe            &lt;-- مكمّل لـ ffmpeg
+    └── background.jpg         &lt;-- خلفية افتراضية (اختياري)</pre>
+    <div class="warn">لا تنقل <code>shanxs.bat</code> إلى داخل المجلد، ولا تغيّر اسم المجلد <code>Shanxs-Downloader</code>، لأن ملف التشغيل يبحث عنه بهذا الاسم تحديداً.</div>
+  </section>
+
+  <section id="install">
+    <h2>التنزيل والتشغيل</h2>
+    <h3>المتطلبات</h3>
+    <ul>
+      <li>Windows 10 أو Windows 11. (الأداة لا تعمل على Mac أو Linux).</li>
+      <li>اتصال بالإنترنت.</li>
+      <li>مساحة كافية على القرص للتحميل.</li>
+    </ul>
+
+    <h3>الخطوات</h3>
+    <ol class="steps">
+      <li><strong>نزّل ملف الـ Zip</strong> من الرابط الذي أرسله لك صاحب الأداة فقط.</li>
+      <li><strong>ألغِ الحظر قبل فك الضغط:</strong> كليك يمين على ملف الـ Zip، ثم <strong>Properties</strong>، وعلّم على خانة <strong>Unblock</strong> أسفل النافذة، ثم <strong>OK</strong>.
+        <div class="note" style="margin-top:8px">هذه الخطوة تمنع ظهور تحذيرات ويندوز لاحقاً. إن لم تجد خانة Unblock فالملف غير محظور وتستطيع المتابعة.</div>
+      </li>
+      <li><strong>فك الضغط:</strong> كليك يمين على الـ Zip ثم <strong>Extract All</strong> إلى مكان مثل سطح المكتب أو مجلد المستندات. لا تشغّل الأداة من داخل الـ Zip مباشرة.</li>
+      <li><strong>شغّل الأداة:</strong> افتح المجلد الذي تم فكه، ثم دبل كليك على <code>shanxs.bat</code>.</li>
+      <li><strong>إن ظهر تحذير أمني</strong> بعنوان <em>Open File - Security Warning</em>، اضغط <strong>Run</strong>. وإن ظهرت شاشة زرقاء من SmartScreen، اضغط <strong>More info</strong> ثم <strong>Run anyway</strong>. سبب هذا التحذير موضّح في قسم <a href="#safety">هل الأداة آمنة؟</a>.</li>
+    </ol>
+
+    <p>ستفتح نافذة سوداء صغيرة لثوانٍ ثم تظهر واجهة الأداة. هذا طبيعي.</p>
+  </section>
+
+  <section id="usage">
+    <h2>طريقة الاستخدام</h2>
+    <ol class="steps">
+      <li>الصق رابط الفيديو أو قائمة التشغيل في خانة <strong>Video / Playlist URL</strong>.</li>
+      <li>اختر <strong>Type</strong>: <em>Single video</em> لفيديو واحد، أو <em>Playlist</em> لقائمة كاملة.</li>
+      <li>اختر <strong>Format</strong>: <em>MP4</em> للفيديو، أو <em>MP3</em> للصوت فقط.</li>
+      <li>اختر <strong>الجودة</strong> من القائمة. تتغير الخيارات تلقائياً حسب الصيغة.</li>
+      <li>اضغط <strong>Select Folder</strong> واختر مكان حفظ الملفات.</li>
+      <li>اضغط <strong>Download</strong>. ستظهر نافذة سوداء تعرض نسبة التحميل والسرعة. انتظر حتى تظهر رسالة <em>Download Finished</em>.</li>
+    </ol>
+
+    <h3>تغيير الخلفية</h3>
+    <ul>
+      <li><strong>مؤقتاً:</strong> اضغط زر <code>BG</code> واختر صورة (jpg أو png أو bmp).</li>
+      <li><strong>بشكل دائم:</strong> ضع صورة باسم <code>background.jpg</code> أو <code>background.png</code> داخل مجلد <code>Shanxs-Downloader</code>.</li>
+      <li>أفضل مقاس تقريبي 560×560 بكسل، ويُفضّل أن تكون الصورة غامقة أو هادئة ليظهر الكلام بوضوح.</li>
+    </ul>
+
+    <h3>جدول الجودات</h3>
+    <table>
+      <tr><th>الصيغة</th><th>الخيارات</th><th>ملاحظة</th></tr>
+      <tr><td>MP4</td><td>360p / 480p / 720p / 1080p / 1440p / 2160p</td><td>إذا لم تتوفر الجودة المطلوبة للفيديو، يختار البرنامج أعلى جودة أقل منها.</td></tr>
+      <tr><td>MP3</td><td>128 / 192 / 256 / 320 kbps</td><td>تحتاج وجود ملف ffmpeg.exe.</td></tr>
+    </table>
+  </section>
+
+  <section id="safety">
+    <div class="safety">
+      <h2>هل الأداة آمنة؟</h2>
+      <p><strong>نعم، الأداة آمنة ولا تحتوي على أي فيروسات أو برامج ضارة.</strong> وهذا شرح سبب ظهور التحذير الذي يراه بعضكم:</p>
+
+      <h3>لماذا يحذّرك ويندوز؟</h3>
+      <p>أي ملف قادم من الإنترنت وغير موقَّع رقمياً يظهر له تحذير <em>Unknown Publisher</em>، بغض النظر عن محتواه. التوقيع الرقمي يتطلب شراء شهادة (Code Signing Certificate) تكلّف مئات الدولارات سنوياً، وهذه أداة مجانية وُضعت للصدقة الجارية، فلم يكن من المنطقي دفع هذا المبلغ. التحذير يعني فقط أن ويندوز لا يعرف الناشر، ولا يعني أنه اكتشف شيئاً ضاراً.</p>
+
+      <h3>كيف تتأكد بنفسك؟</h3>
+      <ul>
+        <li><strong>الكود مكشوف بالكامل:</strong> الملفان <code>shanxs.bat</code> و <code>Shanxs-Downloader.ps1</code> نصوص عادية، افتحهما بالـ Notepad واقرأهما.</li>
+        <li><strong>الأداة لا تثبّت شيئاً</strong> على جهازك، ولا تعدّل الـ Registry، ولا تعمل في الخلفية، ولا تطلب صلاحيات مدير.</li>
+        <li><strong>لا تجمع أي بيانات</strong> ولا ترسل أي شيء لأي جهة. كل ما تفعله هو تشغيل yt-dlp لتحميل الرابط الذي تدخله.</li>
+        <li><strong>عن سطر فك الحظر:</strong> يقوم <code>shanxs.bat</code> بإزالة علامة "تم تنزيله من الإنترنت" عن ملفات الأداة نفسها فقط، داخل مجلدها، حتى لا تتكرر التحذيرات.</li>
+        <li><strong>افحص الملف:</strong> ارفع الـ Zip على موقع <a href="https://www.virustotal.com" target="_blank" rel="noopener">virustotal.com</a> لترى نتيجة الفحص من عشرات برامج الحماية.</li>
+      </ul>
+
+      <h3>عن yt-dlp و ffmpeg</h3>
+      <p>هما برنامجان مفتوحا المصدر ومشهوران عالمياً، ومنفصلان عن هذه الأداة: <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener">yt-dlp</a> و <a href="https://ffmpeg.org" target="_blank" rel="noopener">ffmpeg</a>. تنبّه بعض برامج مكافحة الفيروسات إليهما أحياناً بالخطأ (False Positive) لأنهما يتعاملان مع ملفات الفيديو والشبكة. يمكنك استبدالهما بنسخة تنزّلها من موقعيهما الرسميين في أي وقت.</p>
+
+      <div class="warn">للأمان: نزّل الأداة <strong>من الرابط الذي أعطاك إياه صاحبها فقط</strong>. لا يمكن ضمان سلامة نسخة معدّلة أو معاد رفعها من مصدر آخر.</div>
+    </div>
+  </section>
+
+  <section id="mistakes">
+    <h2>أخطاء شائعة تجنّبها</h2>
+    <ul>
+      <li>تشغيل <code>shanxs.bat</code> من داخل ملف الـ Zip دون فك الضغط.</li>
+      <li>نقل <code>shanxs.bat</code> أو تغيير اسم المجلد <code>Shanxs-Downloader</code>.</li>
+      <li>حذف <code>yt-dlp.exe</code> أو <code>ffmpeg.exe</code> أو <code>ffprobe.exe</code> من المجلد.</li>
+      <li>اختيار مجلد الحفظ داخل <code>C:\Program Files</code> أو جذر القرص <code>C:\</code>، حيث قد يمنع ويندوز الكتابة. الأفضل: سطح المكتب أو Downloads أو Videos.</li>
+      <li>إغلاق النافذة السوداء أثناء التحميل، لأن ذلك يوقف التحميل.</li>
+      <li>اختيار <em>Single video</em> ووضع رابط قائمة تشغيل ثم الاستغراب من تحميل فيديو واحد فقط (والعكس).</li>
+      <li>تعديل ملف <code>.ps1</code> وحفظه بترميز غير <strong>UTF-8 with BOM</strong>، فتظهر الحروف العربية مشوّهة.</li>
+      <li>استخدام إصدار قديم من yt-dlp، وهو أكثر سبب لتوقف التحميل بعد تغييرات يوتيوب.</li>
+    </ul>
+  </section>
+
+  <section id="troubleshoot">
+    <h2>حل المشاكل</h2>
+
+    <details>
+      <summary>الأداة لا تفتح، أو النافذة السوداء تُغلق فوراً</summary>
+      <div>
+        <ul>
+          <li>تأكد أنك فككت الضغط ولم تشغّل من داخل الـ Zip.</li>
+          <li>تأكد أن المجلد <code>Shanxs-Downloader</code> بجانب <code>shanxs.bat</code> وبداخله ملف <code>Shanxs-Downloader.ps1</code>.</li>
+          <li>اقرأ الرسالة المكتوبة في النافذة السوداء، فهي توضّح السبب غالباً.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>ظهر تحذير "Unknown Publisher" أو شاشة SmartScreen</summary>
+      <div>
+        <p>اضغط <strong>Run</strong>، أو <strong>More info</strong> ثم <strong>Run anyway</strong>. ولمنع ظهوره من الأساس: ألغِ الحظر عن الـ Zip قبل فك الضغط كما في خطوات التشغيل. التفاصيل في قسم <a href="#safety">هل الأداة آمنة؟</a></p>
+      </div>
+    </details>
+
+    <details>
+      <summary>صيغة MP3 لا تعمل، أو الفيديو يُحمَّل بدون صوت أو بدون دمج</summary>
+      <div>
+        <p>غالباً ملف <code>ffmpeg.exe</code> أو <code>ffprobe.exe</code> غير موجود في مجلد <code>Shanxs-Downloader</code>. ضعهما بجوار <code>yt-dlp.exe</code>.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>ظهرت كلمة ERROR وفشل التحميل</summary>
+      <div>
+        <ul>
+          <li>حدّث yt-dlp (انظر <a href="#update">تحديث yt-dlp</a>). هذا يحل أغلب الحالات.</li>
+          <li>جرّب فتح الرابط في المتصفح للتأكد أنه يعمل.</li>
+          <li>الفيديوهات الخاصة (Private)، أو الخاصة بالأعضاء، أو المقيّدة بالعمر، أو المحجوبة في بلدك قد لا تُحمَّل.</li>
+          <li>تأكد من اتصال الإنترنت.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>برنامج الحماية حذف yt-dlp.exe أو ffmpeg.exe</summary>
+      <div>
+        <p>هذا إنذار خاطئ شائع. أعد الملف من "الحجر الصحي" (Quarantine) وأضف مجلد الأداة إلى الاستثناءات، أو نزّل الملفين من المواقع الرسمية المذكورة في قسم الأمان.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>التحميل لم يحفظ ملفاً جديداً</summary>
+      <div>
+        <p>الأداة لا تعيد تحميل ملف موجود بنفس الاسم في المجلد نفسه. احذف الملف القديم أو اختر مجلداً آخر.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>الجودة التي اخترتها غير متوفرة</summary>
+      <div>
+        <p>بعض الفيديوهات لا تتوفر بجودات عالية (مثل 1440p أو 2160p). يختار البرنامج تلقائياً أعلى جودة متاحة أقل من اختيارك.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>الحروف العربية ظاهرة بشكل خاطئ في الرسالة أو الواجهة</summary>
+      <div>
+        <p>هذا يحدث إذا عُدّل ملف <code>Shanxs-Downloader.ps1</code> وحُفظ بترميز مختلف. احفظه بترميز <strong>UTF-8 with BOM</strong>.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>لا يعمل على Windows 7 أو 8، أو على Mac / Linux</summary>
+      <div>
+        <p>الأداة مبنية على واجهة Windows Forms وتدعم Windows 10 و 11 فقط.</p>
+      </div>
+    </details>
+  </section>
+
+  <section id="update">
+    <h2>تحديث yt-dlp</h2>
+    <p>يوتيوب يغيّر نظامه من وقت لآخر، فإذا توقف التحميل فحدّث yt-dlp. هناك طريقتان:</p>
+    <ol class="steps">
+      <li><strong>الطريقة اليدوية:</strong> نزّل آخر نسخة <code>yt-dlp.exe</code> من <a href="https://github.com/yt-dlp/yt-dlp/releases" target="_blank" rel="noopener">صفحة الإصدارات الرسمية</a>، واستبدل بها الملف القديم داخل مجلد <code>Shanxs-Downloader</code>.</li>
+      <li><strong>من سطر الأوامر:</strong> افتح CMD داخل المجلد نفسه واكتب:
+<pre>yt-dlp.exe -U</pre>
+      </li>
+    </ol>
+  </section>
+
+  <section id="legal">
+    <h2>إخلاء مسؤولية</h2>
+    <ul>
+      <li>الأداة للاستخدام الشخصي. احترم حقوق الملكية الفكرية وشروط استخدام يوتيوب، ولا تحمّل أو توزّع محتوى لا تملك الحق فيه.</li>
+      <li>الأداة مقدمة كما هي (As Is) دون أي ضمانات، وصاحبها غير مسؤول عن أي استخدام لها.</li>
+      <li>yt-dlp و ffmpeg مشروعان مستقلان لهما تراخيصهما الخاصة، وجميع الحقوق محفوظة لأصحابهما.</li>
+    </ul>
+  </section>
+
+  <section id="english" class="en" dir="ltr" lang="en">
+    <h2>English summary</h2>
+    <p><strong>Shanxs Downloader</strong> is a small Windows tool to download YouTube videos or playlists as MP4 or MP3 at the quality you choose. It needs no installation and no admin rights.</p>
+    <ol>
+      <li>Right-click the Zip, open <em>Properties</em>, tick <em>Unblock</em>, then click OK.</li>
+      <li>Extract the Zip. Do not run the tool from inside the archive.</li>
+      <li>Double-click <code>shanxs.bat</code>. If Windows shows a warning, click <em>Run</em> (or <em>More info</em>, then <em>Run anyway</em>).</li>
+      <li>Paste a URL, pick Single video or Playlist, choose MP4 or MP3, pick a quality and a folder, then press <em>Download</em>.</li>
+    </ol>
+    <p><strong>Is it safe?</strong> Yes. The warning appears only because the files are not digitally signed; a code-signing certificate costs hundreds of dollars a year. All code is plain text you can read in Notepad, the tool installs nothing, changes no system settings and collects no data. It relies on the open-source projects yt-dlp and ffmpeg, which some antivirus products flag by mistake. Please download the package only from the link given by its author.</p>
+    <p><strong>If downloads stop working,</strong> replace <code>yt-dlp.exe</code> with the latest release from <a href="https://github.com/yt-dlp/yt-dlp/releases" target="_blank" rel="noopener">github.com/yt-dlp/yt-dlp</a>. For personal use only; respect copyright and YouTube's terms of service.</p>
+  </section>
+
+  <div class="dedication">
+    <p class="small">صدقة جارية على روح والدي</p>
+    <p class="name">المرحوم / أيمن عبد الحكيم أبو طالب</p>
+    <p class="small">الرجاء الدعاء له بالرحمة والمغفرة</p>
+  </div>
+
+</main>
+
+<footer>&copy; 2026 shanxs22</footer>
+
+</body>
+</html>
